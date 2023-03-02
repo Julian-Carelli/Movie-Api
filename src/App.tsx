@@ -10,13 +10,13 @@ function App() {
       <BrowserRouter>
         <MovieContextProvider>
           <Navbar />
-            <Routes>
-                <Route path="/">
-                  <Route index element={<Home />} />
-                  <Route path="/movie/:name" element={<PageDetails />} />
-                  <Route path="/tv/:name" element={<PageDetails />} />
-                </Route>
-            </Routes>
+          <Routes>
+            <Route path="/">
+              <Route index element={<Home />} />
+              <Route path="/movie/:name" element={<PageDetails />} />
+              <Route path="/tv/:name" element={<PageDetails />} />
+            </Route>
+          </Routes>
         </MovieContextProvider>
       </BrowserRouter>
     </>

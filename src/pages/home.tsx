@@ -1,10 +1,7 @@
 import { HomeStructure } from '../components/HomeStructure';
 
 const Home = () => {
-    return (
-        <HomeStructure />
-    )
-}
+  return <HomeStructure />;
+};
 
-
-export { Home }
+export { Home };

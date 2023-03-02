@@ -1,4 +1,3 @@
-
 export const API_KEY = process.env.REACT_APP_API_KEY;
 export const ENDPOINT_TOP_MOVIES = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`;
 export const ENDPOINT_TOP_SERIES = `https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}`;

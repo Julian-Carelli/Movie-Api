@@ -1,19 +1,15 @@
-import react, { useContext } from 'react';
-import { MovieContext } from '../../context/movieContextProvider';
-
 interface Iprops {
-    renderCards: Function,
+  renderCards: Function;
 }
 
 const Carousel: any = (props: Iprops) => {
-    const { renderCards } = props;
-    const data = useContext(MovieContext)
+  const { renderCards } = props;
 
-    return (
-        <div className='Carousel' style={{display: "flex"}}>
-            {renderCards && renderCards()}
-        </div>
-    )
-}
+  return (
+    <div className="Carousel" style={{ display: 'flex' }}>
+      {renderCards && renderCards()}
+    </div>
+  );
+};
 
 export { Carousel };
