@@ -1,5 +1,5 @@
 import react, { useContext } from 'react';
-import { MovieContext } from '../../Context/movieContextProvider';
+import { MovieContext } from '../../context/movieContextProvider';
 
 interface Iprops {
     renderCards: Function,

@@ -1,32 +1,38 @@
 import { useContext, useEffect, useState } from 'react';
 import { Carousel } from '../Carousel';
 import { Card } from '../Card';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faClapperboard } from '@fortawesome/free-solid-svg-icons'
-import { MovieContext } from '../../Context/movieContextProvider'
-import { MoviesService } from '../../Services/MoviesService';
+import { MovieContext } from '../../context/movieContextProvider'
+import { MoviesService } from '../../services/moviesService';
 
 const HomeStructure = () => {
     const [value, setValue] = useState<any>();
+    const [filterFavorite, setFilterFavorite] = useState<any>(null);
     const [selectionContent, setSelectionContent] = useState<any>({
         contentType: '',
         content: null,
     });
-    const { state, setState }: any = useContext(MovieContext);
-    const { allMovies, allSeries, favorites } = state;
+    const { movies, series, favorites } :any = useContext(MovieContext);
     const movieService = new MoviesService();
+
+    const getFilterFavorites = filter => {
+        if (filter === "all") {
+            return setFilterFavorite(null)
+        }
+        const favoritesCurrent = favorites.filter(favorite => favorite.media_type === filter)
+        setFilterFavorite(favoritesCurrent)
+    }
     
     const getContent = (contentType) => {
         if (contentType === "movie") {
             return setSelectionContent({
                 contentType: "movie",
-                content: allMovies,
+                content: movies,
             });
         }
 
         return setSelectionContent({
             contentType: "tv",
-            content: allSeries,
+            content: series,
         });
     }
 
@@ -46,16 +52,13 @@ const HomeStructure = () => {
     useEffect(() => {
         setSelectionContent({
             contentType: "movie",
-            content: allMovies,
+            content: movies,
         })
-    }, [allMovies])
-    
+    }, [movies])
+
     return (
         <div>
-            <div>
-                <FontAwesomeIcon icon={faClapperboard} />
-            </div>
-            <div>
+            <div style={{padding: "35px"}}>
                 <div>
                     <form onSubmit={(event) => getSearch(event)}>
                         <input type="text" value={value} onChange={handleChange} placeholder="Search Movies and Series"></input>
@@ -68,18 +71,18 @@ const HomeStructure = () => {
                     <h3>Your liked stuff</h3>
                 </div>
                 <div className="" style={{display: "flex", alignItems: "center", paddingLeft: "20px", paddingRight: "20px", paddingBottom: "40px"}}>
-                    <div className="Filter" style={{marginRight: "40px", padding: "5px 20px"}}>
+                    <div className="Filter" onClick={() => getFilterFavorites("all")} style={{marginRight: "40px", padding: "5px 20px"}}>
                         <span>All</span>
                     </div>
-                    <div className="Filter" style={{marginRight: "40px", padding: "5px 20px"}}>
+                    <div className="Filter" onClick={() => getFilterFavorites("movie")} style={{marginRight: "40px", padding: "5px 20px"}}>
                         <span>Movies</span>
                     </div>
-                    <div className="Filter">
+                    <div className="Filter" onClick={() => getFilterFavorites("tv")}>
                         <span>TV</span>
                     </div>
                 </div>
                 <Carousel
-                    renderCards={() => favorites && favorites.map((movie:any) => <Card movie={movie} />)}
+                    renderCards={() => (filterFavorite || favorites) && (filterFavorite || favorites).map((movie:any) => <Card movie={movie} />)}
                 >
                 </Carousel>
             </div>

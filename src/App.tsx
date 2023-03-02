@@ -1,18 +1,25 @@
-import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Home } from './Pages/Home';
-import { PageDetails } from './Pages/PageDetails';
+import { MovieContextProvider } from './context/movieContextProvider';
+import { Home } from './pages/home';
+import { Navbar } from './components/Navbar/index';
+import { PageDetails } from './pages/pageDetails';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-          <Route path="/">
-            <Route index element={<Home />} />
-            <Route path=":id" element={<PageDetails />} />
-          </Route>
-      </Routes>
-    </BrowserRouter>
+    <>
+      <BrowserRouter>
+        <MovieContextProvider>
+          <Navbar />
+            <Routes>
+                <Route path="/">
+                  <Route index element={<Home />} />
+                  <Route path="/movie/:name" element={<PageDetails />} />
+                  <Route path="/tv/:name" element={<PageDetails />} />
+                </Route>
+            </Routes>
+        </MovieContextProvider>
+      </BrowserRouter>
+    </>
   );
 }
 
