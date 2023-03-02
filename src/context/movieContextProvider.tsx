@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps*/
 import { createContext, useEffect, useReducer, useMemo } from 'react';
 import { movieReducer, initialState } from '../reducer/movieReducer';
 import { MoviesService } from '../services/moviesService';

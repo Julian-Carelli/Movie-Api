@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return*/
 import { useContext } from 'react';
 import { MovieContext } from '../../context/movieContextProvider';
 import { useNavigate } from 'react-router-dom';
