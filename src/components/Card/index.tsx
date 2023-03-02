@@ -4,7 +4,7 @@ import { MovieContext } from '../../context/movieContextProvider';
 import { useNavigate } from 'react-router-dom';
 import { ENDPOINT_IMAGES } from '../../constants/urls';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
 const IMAGE_NOT_FOUND =
   'https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg';
@@ -12,6 +12,8 @@ const IMAGE_NOT_FOUND =
 interface Iprops {
   movie: any;
   contentType?: any;
+  isFavoriteSection: boolean;
+  showIconHeart: boolean;
 }
 
 const existsImage = (movie) => {
@@ -63,8 +65,12 @@ const gendersName = (genderList: any, contentType: any, movie: any) => {
   return foundedGenders;
 };
 
+const isFavorite = (content, favorites) => {
+  return favorites.some((favorite) => favorite.id === content.id);
+};
+
 const Card = (props: Iprops) => {
-  const { movie, contentType } = props;
+  const { movie, contentType, isFavoriteSection, showIconHeart } = props;
   const value: any = useContext(MovieContext);
   const navigate = useNavigate();
   const contentTypeCustom = movie?.media_type ? movie?.media_type : contentType;
@@ -104,32 +110,41 @@ const Card = (props: Iprops) => {
         />
       </div>
       <div className="Card__information">
-        <div>
-          <h4>{movie?.title}</h4>
+        <div className="Card__presentation">
+          <h4 style={{ margin: '0' }}>{movie?.title || movie?.name}</h4>
         </div>
-      </div>
-      <div className="Card__action" style={{ display: 'flex' }}>
-        <div>
-          <FontAwesomeIcon
-            icon={faTrash}
-            onClick={() => value.actions.deleteToFavorites(movie)}
-          />
-        </div>
-        <div>
-          <FontAwesomeIcon
-            icon={faHeart}
-            style={{ marginLeft: '20px' }}
-            onClick={() => value.actions.addToFavorites(movie)}
-          />
-        </div>
-        <div>
+        <div className="Card__genders">
+          <strong>Generos: </strong>
           {movie && movie.gender_name
-            ? movie.gender_name.map((name) => <p>{name}</p>)
+            ? movie.gender_name.map((name) => (
+                <p className="Card__gender">{name}</p>
+              ))
             : gendersName(genderList, contentType, movie).map((nameGender) => (
-                <p>{nameGender}</p>
+                <p className="Card__gender">{nameGender}</p>
               ))}
         </div>
       </div>
+      {showIconHeart && (
+        <div className="Card__actions">
+          <div
+            className={
+              'Card__action action__heart ' +
+              (isFavoriteSection || isFavorite(movie, value.favorites)
+                ? 'action__heart--red'
+                : '')
+            }
+          >
+            <FontAwesomeIcon
+              icon={faHeart}
+              onClick={
+                isFavoriteSection
+                  ? () => value.actions.deleteToFavorites(movie)
+                  : () => value.actions.addToFavorites(movie)
+              }
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -9,6 +9,8 @@ const PageDetails = () => {
       <Card
         movie={value.selectionContent.content}
         contentType={value.selectionContent.contentType}
+        isFavoriteSection={false}
+        showIconHeart={false}
       />
     </div>
   );

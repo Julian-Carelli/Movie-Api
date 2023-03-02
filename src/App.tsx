@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import { MovieContextProvider } from './context/movieContextProvider';
 import { Home } from './pages/home';
 import { Navbar } from './components/Navbar/index';
@@ -7,7 +7,7 @@ import { PageDetails } from './pages/pageDetails';
 function App() {
   return (
     <>
-      <BrowserRouter>
+      <HashRouter>
         <MovieContextProvider>
           <Navbar />
           <Routes>
@@ -18,7 +18,7 @@ function App() {
             </Route>
           </Routes>
         </MovieContextProvider>
-      </BrowserRouter>
+      </HashRouter>
     </>
   );
 }

@@ -11,3 +11,111 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.Search form input {
+    padding: 10px;
+    border-radius: 10px;
+    height: 22px;
+    width: 460px;
+    font-size: 16px;
+    border: 2px solid black;
+    background: #865DFF;
+    padding-left: 45px;
+}
+
+.Search form input::placeholder {
+    color: #191825;
+}
+
+.Search form svg {
+    position: relative;
+    left: -505px;
+    font-size: 21px;
+    bottom: -2px;
+}
+
+.Filter-movie, .Filter-tv, .Filter-all {
+    box-sizing: border-box;
+    width: 100px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 45px;
+    border-radius: 10px;
+    background-color: aliceblue;
+    border: 2px solid black;
+    margin-left: 20px;
+    cursor: pointer;
+    opacity: 1;
+}
+
+.Filter-movie:hover, .Filter-tv:hover, .Filter-all:hover {
+    opacity: 0.5;
+}
+
+.Card {
+    padding: 0px 40px;
+    width: 300px;
+    height: 600px;
+}
+
+.Card__image {
+    height: 60%;
+}
+
+.Card img {
+    width: 300px;
+    cursor: pointer;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.Card .Card__presentation {
+    padding-top: 20px;
+}
+
+.Card__information {
+    padding-top: 40px;
+    padding-left: 5px;
+}
+
+.Card .Card__actions {
+    display: flex;
+    align-items: center;
+    padding-left: 5px;
+}
+
+.Card .Card__actions .Card__action {
+    font-size: 26px;
+}
+
+.action__trash:hover {
+    opacity: 0.8;
+}
+
+.action__heart:hover {
+    color: #DC0000;
+}
+
+.action__heart--red {
+    color: #DC0000;
+}
+
+.action__heart--space {
+    margin-left: 20px;
+}
+
+.Card .Card__genders {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+.Card .Card__gender {
+    padding: 0px 5px;
+}
+
+.Carousel {
+    display: flex;
+}

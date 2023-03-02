@@ -3,6 +3,8 @@ import { Carousel } from '../Carousel';
 import { Card } from '../Card';
 import { MovieContext } from '../../context/movieContextProvider';
 import { MoviesService } from '../../services/moviesService';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 const HomeStructure = () => {
   const [value, setValue] = useState<any>();
@@ -60,8 +62,14 @@ const HomeStructure = () => {
 
   return (
     <div>
-      <div style={{ padding: '35px' }}>
-        <div>
+      <div
+        style={{
+          paddingLeft: '35px',
+          paddingTop: '60px',
+          paddingBottom: '25px',
+        }}
+      >
+        <div className="Search">
           <form onSubmit={(event) => getSearch(event)}>
             <input
               type="text"
@@ -69,13 +77,13 @@ const HomeStructure = () => {
               onChange={handleChange}
               placeholder="Search Movies and Series"
             ></input>
-            <button type="submit">Buscar</button>
+            <FontAwesomeIcon icon={faSearch} />
           </form>
         </div>
       </div>
       <div className="YOUR__LIKED__STUFF">
         <div style={{ paddingLeft: '36px' }}>
-          <h3>Your liked stuff</h3>
+          <h3 style={{ fontSize: '36px' }}>Your liked stuff</h3>
         </div>
         <div
           className=""
@@ -87,21 +95,16 @@ const HomeStructure = () => {
             paddingBottom: '40px',
           }}
         >
-          <div
-            className="Filter"
-            onClick={() => getFilterFavorites('all')}
-            style={{ marginRight: '40px', padding: '5px 20px' }}
-          >
+          <div className="Filter-all" onClick={() => getFilterFavorites('all')}>
             <span>All</span>
           </div>
           <div
-            className="Filter"
+            className="Filter-movie"
             onClick={() => getFilterFavorites('movie')}
-            style={{ marginRight: '40px', padding: '5px 20px' }}
           >
             <p>Movies</p>
           </div>
-          <div className="Filter" onClick={() => getFilterFavorites('tv')}>
+          <div className="Filter-tv" onClick={() => getFilterFavorites('tv')}>
             <span>TV</span>
           </div>
         </div>
@@ -109,14 +112,18 @@ const HomeStructure = () => {
           renderCards={() =>
             (filterFavorite || favorites) &&
             (filterFavorite || favorites).map((movie: any) => (
-              <Card movie={movie} />
+              <Card
+                movie={movie}
+                isFavoriteSection={true}
+                showIconHeart={true}
+              />
             ))
           }
         ></Carousel>
       </div>
       <div className="TOP__MOVIES__SHOWS">
         <div style={{ paddingLeft: '36px' }}>
-          <h3>Top Movies and Shows</h3>
+          <h3 style={{ fontSize: '36px' }}>Top Movies and Shows</h3>
         </div>
         <div
           className=""
@@ -128,14 +135,10 @@ const HomeStructure = () => {
             paddingBottom: '40px',
           }}
         >
-          <div
-            className="Filter"
-            onClick={() => getContent('movie')}
-            style={{ marginRight: '40px', padding: '5px 20px' }}
-          >
+          <div className="Filter-movie" onClick={() => getContent('movie')}>
             <span>Movies</span>
           </div>
-          <div className="Filter" onClick={() => getContent('tv')}>
+          <div className="Filter-tv" onClick={() => getContent('tv')}>
             <span>TV</span>
           </div>
         </div>
@@ -146,6 +149,8 @@ const HomeStructure = () => {
               <Card
                 movie={content}
                 contentType={selectionContent?.contentType}
+                isFavoriteSection={false}
+                showIconHeart={true}
               />
             ))
           }
