@@ -60,6 +60,10 @@ const HomeStructure = () => {
     });
   }, [movies]);
 
+  useEffect(() => {
+    setFilterFavorite(favorites);
+  }, [favorites]);
+
   return (
     <div>
       <div
