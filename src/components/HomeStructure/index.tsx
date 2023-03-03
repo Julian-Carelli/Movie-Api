@@ -116,6 +116,7 @@ const HomeStructure = () => {
                 movie={movie}
                 isFavoriteSection={true}
                 showIconHeart={true}
+                isDetail={false}
               />
             ))
           }
@@ -151,6 +152,7 @@ const HomeStructure = () => {
                 contentType={selectionContent?.contentType}
                 isFavoriteSection={false}
                 showIconHeart={true}
+                isDetail={false}
               />
             ))
           }
