@@ -31,11 +31,6 @@ const Card = (props: Iprops) => {
   }
 
   const goToPageDetail = (movie, contentTypeCustom) => {
-    const obj = {
-      content: movie,
-      contentType: contentTypeCustom,
-    };
-    value.actions.selectCurrentContent(obj);
     return navigate('/' + contentTypeCustom + '/' + movie.id);
   };
 

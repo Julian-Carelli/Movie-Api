@@ -1,11 +1,35 @@
-import { useContext } from 'react';
-import { MovieContext } from '../context/movieContextProvider';
+import { useEffect, useState } from 'react';
 import { Card } from '../components/Card/index';
+import { MoviesService } from '../services/moviesService';
+
+const moviesService = new MoviesService();
+
+const decideByMovieOrSerie = async (contentType, contentId) => {
+  if (contentType === 'movie') {
+    const content = await moviesService.getPageMovieDetails(contentId);
+    return content;
+  }
+  const content = await moviesService.getPageSerieDetails(contentId);
+  return content;
+};
 
 const PageDetails = () => {
-  const { selectionContent } = useContext<any>(MovieContext);
+  const [currentContent, setcurrentContent] = useState<any>(null);
+  const hashArray: any = window.location.hash.split('/');
+  const contentType: any = hashArray[1];
+  const contentId = hashArray[2];
 
-  const content = selectionContent.content;
+  useEffect(() => {
+    (async () => {
+      const content = await decideByMovieOrSerie(contentType, contentId);
+      setcurrentContent(content);
+    })();
+  }, [contentType, contentId]);
+
+  if (currentContent === null) {
+    return null;
+  }
+
   return (
     <div
       className="Page-details"
@@ -19,12 +43,12 @@ const PageDetails = () => {
     >
       <div>
         <h2 style={{ fontSize: '50px', color: 'rgb(134, 93, 255)' }}>
-          {content?.title || content?.name}
+          {currentContent?.title || currentContent?.name}
         </h2>
       </div>
       <Card
-        movie={content}
-        contentType={selectionContent.contentType}
+        movie={currentContent}
+        contentType={contentType}
         isFavoriteSection={false}
         showIconHeart={false}
         isDetail={true}

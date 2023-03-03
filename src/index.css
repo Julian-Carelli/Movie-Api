@@ -68,6 +68,10 @@ code {
     opacity: 0.5;
 }
 
+.Carousel {
+    overflow: hidden;
+}
+
 .Card {
     padding: 0px 40px;
     width: 300px;
@@ -151,10 +155,6 @@ code {
 }
 .Card .Card__gender {
     padding: 0px 5px;
-}
-
-.Carousel {
-    display: flex;
 }
 
 .circular-progress {

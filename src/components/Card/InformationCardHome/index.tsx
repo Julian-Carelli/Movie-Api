@@ -23,15 +23,25 @@ const existsImage = (movie) => {
     : IMAGE_NOT_FOUND;
 };
 
-const foundGenders = (movie, genderList, foundedGenders) => {
+const foundGenders = (movie, genderList, foundedGenders, isDetail) => {
   try {
     const genresIds =
-      movie & movie?.genres || movie?.genre_ids
+      movie?.genres || movie?.genre_ids
         ? movie?.genres || movie?.genre_ids
         : [];
-    genresIds.map((id) => {
+    if (!isDetail) {
+      return genresIds.map((id) => {
+        genderList?.genres.map((gender: any) => {
+          if (gender.id === id) {
+            const { name } = gender;
+            foundedGenders.push(name);
+          }
+        });
+      });
+    }
+    return genresIds.map((genderDetail) => {
       genderList?.genres.map((gender: any) => {
-        if (gender.id === id) {
+        if (gender.id === genderDetail.id) {
           const { name } = gender;
           foundedGenders.push(name);
         }
@@ -42,18 +52,23 @@ const foundGenders = (movie, genderList, foundedGenders) => {
   }
 };
 
-const gendersName = (genderList: any, contentType: any, movie: any) => {
+const gendersName = (
+  genderList: any,
+  contentType: any,
+  movie: any,
+  isDetail: any
+) => {
   if (!movie) {
     return [];
   }
   const { genderSeries, genderMovies } = genderList;
   const foundedGenders: any = [];
   if (contentType === 'movie') {
-    foundGenders(movie, genderMovies, foundedGenders);
+    foundGenders(movie, genderMovies, foundedGenders, isDetail);
     movie['gender_name'] = foundedGenders;
     return foundedGenders;
   }
-  foundGenders(movie, genderSeries, foundedGenders);
+  foundGenders(movie, genderSeries, foundedGenders, isDetail);
   movie['gender_name'] = foundedGenders;
   return foundedGenders;
 };
@@ -95,9 +110,9 @@ const InformationCardHome = ({
           ? movie.gender_name.map((name) => (
               <p className="Card__gender">{name}</p>
             ))
-          : gendersName(genderList, contentType, movie).map((nameGender) => (
-              <p className="Card__gender">{nameGender}</p>
-            ))}
+          : gendersName(genderList, contentType, movie, isDetail).map(
+              (nameGender) => <p className="Card__gender">{nameGender}</p>
+            )}
       </div>
     </div>
     {showIconHeart && (
