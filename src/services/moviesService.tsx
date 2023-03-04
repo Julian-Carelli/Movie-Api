@@ -11,13 +11,19 @@ import {
 import { restClient } from '../rest-client';
 
 class MoviesService {
-  async getTopMovies() {
-    const { results } = await restClient(ENDPOINT_TOP_MOVIES);
+  async getTopMovies(page?: number) {
+    const urlToGetPage = ENDPOINT_TOP_MOVIES + '&page=' + page;
+    const { results } = await restClient(
+      page ? urlToGetPage : ENDPOINT_TOP_MOVIES
+    );
     return results;
   }
 
-  async getTopSeries() {
-    const { results } = await restClient(ENDPOINT_TOP_SERIES);
+  async getTopSeries(page?: number) {
+    const urlToGetPage = ENDPOINT_TOP_SERIES + '&page=' + page;
+    const { results } = await restClient(
+      page ? urlToGetPage : ENDPOINT_TOP_SERIES
+    );
     return results;
   }
 

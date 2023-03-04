@@ -20,7 +20,6 @@ const movieReducer = (state, action) => {
       if (favoriteIsDuplicate) {
         return state;
       }
-
       return {
         ...state,
         favorites: [...state.favorites, payload.favorites],
@@ -36,12 +35,12 @@ const movieReducer = (state, action) => {
     case 'GET_SERIES':
       return {
         ...state,
-        series: payload.series,
+        series: [...state.series, ...payload.series],
       };
     case 'GET_MOVIES':
       return {
         ...state,
-        movies: payload.movies,
+        movies: [...state.movies, ...payload.movies],
       };
     case 'GET_GENDER_LIST_SERIES':
       return {
@@ -52,16 +51,6 @@ const movieReducer = (state, action) => {
       return {
         ...state,
         genderMovies: payload.genderMovies,
-      };
-
-    case 'SELECT_CURRENT_CONTENT':
-      return {
-        ...state,
-        selectionContent: {
-          ...state.selectionContent,
-          contentType: action.payload.contentType,
-          content: action.payload.content,
-        },
       };
   }
 };

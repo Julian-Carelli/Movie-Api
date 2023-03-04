@@ -1,7 +1,9 @@
+import { useContext, useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { Card } from '../Card';
+import { MovieContext } from '../../context/movieContextProvider';
 
 interface Iprops {
   contents: any;
@@ -11,13 +13,54 @@ interface Iprops {
 
 const Carousel: any = (props: Iprops) => {
   const { contents, contentType = null, isFavoriteSection } = props;
+  const { actions }: any = useContext(MovieContext);
+  const [counterContentType, setCounterContentType] = useState({
+    movie: {
+      counter: 1,
+    },
+    tv: {
+      counter: 1,
+    },
+  });
+
+  const decideHydrateMoviesOrSeries = (contentType, page) => {
+    if (contentType === 'movie') {
+      return actions.getTopMovies(page);
+    }
+
+    return actions.getTopSeries(page);
+  };
+
+  function isDecimal(input) {
+    const inputNumber = input.toString();
+    return inputNumber.includes('.');
+  }
+
   const settings = {
+    centerMode: false,
     dots: true,
     infinite: false,
     speed: 500,
     slidesToShow: 5,
     slidesToScroll: 5,
     initialSlide: 0,
+    beforeChange: (_, b) => {
+      if (contentType && !isDecimal(b / 10)) {
+        setCounterContentType({
+          ...counterContentType,
+          [contentType]: {
+            counter: (counterContentType[contentType].counter += 1),
+          },
+        });
+
+        decideHydrateMoviesOrSeries(
+          contentType,
+          counterContentType[contentType].counter
+        );
+      }
+
+      return false;
+    },
     responsive: [
       {
         breakpoint: 1024,

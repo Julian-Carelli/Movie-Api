@@ -10,8 +10,8 @@ const MovieContextProvider = ({ children }) => {
   const moviesService = new MoviesService();
 
   const getTopMovies = useMemo(
-    () => async () => {
-      const results = await moviesService.getTopMovies();
+    () => async (page?: number) => {
+      const results = await moviesService.getTopMovies(page);
       dispatch({
         type: 'GET_MOVIES',
         payload: {
@@ -23,8 +23,8 @@ const MovieContextProvider = ({ children }) => {
   );
 
   const getTopSeries = useMemo(
-    () => async () => {
-      const results = await moviesService.getTopSeries();
+    () => async (page?: number, action?: string) => {
+      const results = await moviesService.getTopSeries(page);
       dispatch({
         type: 'GET_SERIES',
         payload: {
@@ -79,16 +79,6 @@ const MovieContextProvider = ({ children }) => {
     });
   };
 
-  const selectCurrentContent = ({ contentType, content }) => {
-    dispatch({
-      type: 'SELECT_CURRENT_CONTENT',
-      payload: {
-        contentType,
-        content,
-      },
-    });
-  };
-
   useEffect(() => {
     const allPromise = Promise.all([
       getGenderListMovies(),
@@ -112,7 +102,8 @@ const MovieContextProvider = ({ children }) => {
     actions: {
       addToFavorites,
       deleteToFavorites,
-      selectCurrentContent,
+      getTopSeries,
+      getTopMovies,
     },
     genderSeries: state.genderSeries,
     genderMovies: state.genderMovies,

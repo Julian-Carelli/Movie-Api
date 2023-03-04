@@ -26,7 +26,7 @@ code {
     color: #2F58CD;
 }
 
-.Search__content {
+.Search {
     padding-left: 35px;
     padding-top: 60px;
     padding-bottom: 25px;
@@ -125,6 +125,10 @@ code {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+}
+
+.Card .Card__presentation h4 {
+    margin: 0px;
 }
 
 .Card__information {
@@ -259,6 +263,10 @@ code {
     color: rgb(134, 93, 255);
 }
 
+.slick-dots {
+    display: none!important;
+}
+
 @media (max-width: 480px) {
     .Navbar svg {
         font-size: 20px;
@@ -272,7 +280,7 @@ code {
         justify-content: center;
     }
 
-    .Search__content {
+    .Search {
         padding-left: 0px;
         display: flex;
         justify-content: center;
