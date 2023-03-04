@@ -65,14 +65,8 @@ const HomeStructure = () => {
 
   return (
     <div>
-      <div
-        style={{
-          paddingLeft: '35px',
-          paddingTop: '60px',
-          paddingBottom: '25px',
-        }}
-      >
-        <div className="Search">
+      <div className="Search__content">
+        <div className="Search__container">
           <form onSubmit={(event) => getSearch(event)}>
             <input
               type="text"
@@ -80,7 +74,7 @@ const HomeStructure = () => {
               onChange={handleChange}
               placeholder="Search Movies and Series"
             ></input>
-            <FontAwesomeIcon icon={faSearch} />
+            <FontAwesomeIcon className="Search__icon" icon={faSearch} />
           </form>
         </div>
       </div>

@@ -105,7 +105,6 @@ const InformationCardHome = ({
         )}
       </div>
       <div className={'Card__genders ' + (isDetail && 'Card__genders--detail')}>
-        {!isDetail && <strong>Generos: </strong>}
         {movie && movie.gender_name
           ? movie.gender_name.map((name) => (
               <p className="Card__gender">{name}</p>

@@ -26,7 +26,17 @@ code {
     color: #2F58CD;
 }
 
-.Search form input {
+.Search__content {
+    padding-left: 35px;
+    padding-top: 60px;
+    padding-bottom: 25px;
+}
+
+.Search__container {
+    text-align: center;
+}
+
+.Search__container form input {
     padding: 10px;
     border-radius: 10px;
     height: 22px;
@@ -37,15 +47,19 @@ code {
     padding-left: 45px;
 }
 
-.Search form input::placeholder {
+.Search__container form input::placeholder {
     color: #191825;
+}
+
+.TOP__MOVIES__SHOWS {
+    padding-bottom: 40px;
 }
 
 .YOUR_LIKED__STUFF div h3, .TOP__MOVIES__SHOWS div h3 {
     font-size: 36px;
 }
 
-.Search form svg {
+.Search__container form svg {
     position: relative;
     left: -505px;
     font-size: 21px;
@@ -92,6 +106,7 @@ code {
     box-sizing: border-box;
 }
 
+
 .Card__image {
     display: flex;
     justify-content: center;
@@ -107,6 +122,9 @@ code {
 
 .Card .Card__presentation {
     padding-top: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .Card__information {
@@ -117,7 +135,8 @@ code {
 .Card .Card__actions {
     display: flex;
     align-items: center;
-    padding-left: 5px;
+    justify-content: center;
+    
 }
 
 .Card .Card__actions .Card__action {
@@ -144,6 +163,8 @@ code {
     display: flex;
     align-items: center;
     font-size: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .Card__genders--detail {
@@ -159,8 +180,9 @@ code {
     font-size: 18px;
     font-weight: 900;
 }
+
 .Card .Card__gender {
-    padding: 0px 5px;
+    padding: 0px 4px;
 }
 
 .circular-progress {
@@ -188,16 +210,14 @@ code {
 }
 
 .TOP__MOVIES__SHOWS__content, .YOUR__LIKED__STUFF__content {
-    padding-left: 36px;
+    text-align: center;
     font-size: 36px;
 }
 
 .TOP__MOVIES__SHOWS__container, .YOUR__LIKED__STUFF__container {
     display: flex;
-    align-items: center;
-    padding-left: 20px;
-    padding-right: 20px;
     padding-bottom: 40px;
+    justify-content: center;
 }
 
 .Page-details {
@@ -215,10 +235,6 @@ code {
 
 .Information-card-detail {
     width: 40%;
-}
-
-.Information-card-detail div {
-    padding: 40px 0px;
 }
 
 .Information-card-detail div .Information-card-detail__title {
@@ -255,7 +271,18 @@ code {
         padding-left: 0px;
         justify-content: center;
     }
-    .Search form input {
+
+    .Search__content {
+        padding-left: 0px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .Search__icon {
+        display: none;
+    }
+
+    .Search__container form input {
         width: 250px;
         font-size: 12px;
         text-align: center;
@@ -312,6 +339,14 @@ code {
     .Card__image {
         width: 200px;
         height: 300px;
+    }
+
+    .Card__information {
+        padding-left: 0px;
+    }
+
+    .Card .Card__actions {
+        padding-left: 0px;
     }
 
     .Card__image img {
