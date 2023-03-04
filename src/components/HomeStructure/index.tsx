@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
 import { Carousel } from '../Carousel';
-import { Card } from '../Card';
 import { MovieContext } from '../../context/movieContextProvider';
 import { MoviesService } from '../../services/moviesService';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -86,19 +85,10 @@ const HomeStructure = () => {
         </div>
       </div>
       <div className="YOUR__LIKED__STUFF">
-        <div style={{ paddingLeft: '36px' }}>
-          <h3 style={{ fontSize: '36px' }}>Your liked stuff</h3>
+        <div className="YOUR__LIKED__STUFF__content">
+          <h3>Your liked stuff</h3>
         </div>
-        <div
-          className=""
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            paddingLeft: '20px',
-            paddingRight: '20px',
-            paddingBottom: '40px',
-          }}
-        >
+        <div className="YOUR__LIKED__STUFF__container">
           <div className="Filter-all" onClick={() => getFilterFavorites('all')}>
             <span>All</span>
           </div>
@@ -106,40 +96,22 @@ const HomeStructure = () => {
             className="Filter-movie"
             onClick={() => getFilterFavorites('movie')}
           >
-            <p>Movies</p>
+            <span>Movies</span>
           </div>
           <div className="Filter-tv" onClick={() => getFilterFavorites('tv')}>
             <span>TV</span>
           </div>
         </div>
         <Carousel
-          renderCards={() =>
-            (filterFavorite || favorites) &&
-            (filterFavorite || favorites).map((movie: any) => (
-              <Card
-                movie={movie}
-                isFavoriteSection={true}
-                showIconHeart={true}
-                isDetail={false}
-              />
-            ))
-          }
+          isFavoriteSection={true}
+          contents={filterFavorite || favorites}
         ></Carousel>
       </div>
       <div className="TOP__MOVIES__SHOWS">
-        <div style={{ paddingLeft: '36px' }}>
-          <h3 style={{ fontSize: '36px' }}>Top Movies and Shows</h3>
+        <div className="TOP__MOVIES__SHOWS__content">
+          <h3>Top Movies and Shows</h3>
         </div>
-        <div
-          className=""
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            paddingLeft: '20px',
-            paddingRight: '20px',
-            paddingBottom: '40px',
-          }}
-        >
+        <div className="TOP__MOVIES__SHOWS__container">
           <div className="Filter-movie" onClick={() => getContent('movie')}>
             <span>Movies</span>
           </div>
@@ -148,18 +120,9 @@ const HomeStructure = () => {
           </div>
         </div>
         <Carousel
-          renderCards={() =>
-            selectionContent.content &&
-            selectionContent?.content.map((content: any) => (
-              <Card
-                movie={content}
-                contentType={selectionContent?.contentType}
-                isFavoriteSection={false}
-                showIconHeart={true}
-                isDetail={false}
-              />
-            ))
-          }
+          isFavoriteSection={false}
+          contents={selectionContent.content}
+          contentType={selectionContent.contentType}
         ></Carousel>
       </div>
     </div>

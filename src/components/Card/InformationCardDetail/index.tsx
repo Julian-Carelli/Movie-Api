@@ -32,42 +32,27 @@ const InformationCardDetail = ({ movie }) => {
   useEffect(() => drawProgressBar(movie?.vote_average), []);
 
   return (
-    <div style={{ width: '40%' }}>
-      <div style={{ padding: '40px 0px' }}>
-        <p
-          style={{
-            paddingBottom: '40px',
-            fontSize: '25px',
-            fontWeight: '800',
-            color: 'rgb(134, 93, 255)',
-          }}
-        >
+    <div className="Information-card-detail">
+      <div>
+        <p className="Information-card-detail__title">
           {(movie?.media_type).toUpperCase()}
         </p>
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <div className="Information-card-detail__container">
           <div className="circular-progress">
             <div className="value-container">0%</div>
           </div>
-          <div>
+          <div className="Information-card-detail__release-date">
             <h3>Release Date</h3>
             <p>{movie.release_date ? movie.release_date : '-'}</p>
           </div>
-          <div>
+          <div className="Information-card-detail__popularity">
             <h3>Popularity</h3>
             <p>{movie.popularity ? movie.popularity : '-'}</p>
           </div>
         </div>
       </div>
-      <div style={{ padding: '80px 0px' }}>
-        <h3
-          style={{
-            fontSize: '25px',
-            fontWeight: '800',
-            color: 'rgb(134, 93, 255)',
-          }}
-        >
-          Overview
-        </h3>
+      <div className="Information-card-detail__overview">
+        <h3>Overview</h3>
         <p>{movie?.overview}</p>
       </div>
     </div>

@@ -41,6 +41,10 @@ code {
     color: #191825;
 }
 
+.YOUR_LIKED__STUFF div h3, .TOP__MOVIES__SHOWS div h3 {
+    font-size: 36px;
+}
+
 .Search form svg {
     position: relative;
     left: -505px;
@@ -89,6 +93,8 @@ code {
 }
 
 .Card__image {
+    display: flex;
+    justify-content: center;
     height: 60%;
 }
 
@@ -179,4 +185,223 @@ code {
     position: relative;
     font-size: 20px;
     color: black;
+}
+
+.TOP__MOVIES__SHOWS__content, .YOUR__LIKED__STUFF__content {
+    padding-left: 36px;
+    font-size: 36px;
+}
+
+.TOP__MOVIES__SHOWS__container, .YOUR__LIKED__STUFF__container {
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 40px;
+}
+
+.Page-details {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 40px;
+}
+
+.Page-details__content h2 {
+    font-size: 50px; 
+    color: rgb(134, 93, 255); 
+}
+
+.Information-card-detail {
+    width: 40%;
+}
+
+.Information-card-detail div {
+    padding: 40px 0px;
+}
+
+.Information-card-detail div .Information-card-detail__title {
+    padding-bottom: 40px;
+    font-size: 25px;
+    font-weight: 800;
+    color: rgb(134, 93, 255);
+}
+
+.Information-card-detail__container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.Information-card-detail__overview {
+    padding: 80px 0px;
+}
+
+.Information-card-detail__overview h3 {
+    font-size: 25px;
+    font-weight: 800;
+    color: rgb(134, 93, 255);
+}
+
+@media (max-width: 480px) {
+    .Navbar svg {
+        font-size: 20px;
+    }
+    .Card__action {
+        padding-top: 20px;
+    }
+
+    .Card__actions {
+        padding-left: 0px;
+        justify-content: center;
+    }
+    .Search form input {
+        width: 250px;
+        font-size: 12px;
+        text-align: center;
+        margin: auto;
+        padding: 10px;
+    }
+
+    .TOP__MOVIES__SHOWS__container {
+        padding-left: 0px;
+    }
+
+    .TOP__MOVIES__SHOWS__container, .YOUR__LIKED__STUFF__container {
+        display: flex;
+        justify-content: center;
+    }
+
+    .TOP__MOVIES__SHOWS__container .Filter-movie {
+        margin-left: 0px;
+    }
+
+    .YOUR__LIKED__STUFF div h3, .TOP__MOVIES__SHOWS div h3 {
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .YOUR__LIKED__STUFF div, .TOP__MOVIES__SHOWS div {
+        text-align: center;
+        padding-left: 0px;
+    }
+
+    .Filter-movie, .Filter-tv, .Filter-all {
+        width: 50px;
+        height: 25px;
+    }
+
+    .Filter-all {
+        margin: 0px;
+    }
+
+    .Filter-movie span, .Filter-tv span, .Filter-all span {
+        font-size: 10px;
+    }
+
+    .Card {
+        width: 200px;
+        height: 600px;
+        margin: auto;
+    }
+
+    .Card__detail {
+        width: 80%;
+    }
+
+    .Card__image {
+        width: 200px;
+        height: 300px;
+    }
+
+    .Card__image img {
+        width: 200px!important;
+        height: 300px!important;
+    }
+
+    .Card .Card__genders {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-top: 40px;
+    }
+
+    .Card .Card__genders .Card__gender {
+        margin: 5px 0px;
+    }
+    
+    .Page-details__content {
+        width: 80%;
+    }
+
+    .Page-details__content h2 {
+        font-size: 21px;
+        color:rgb(134, 93, 255);
+        text-align: center;
+    }
+
+    .Card .Card__genders--detail {
+        font-size: 14px;
+        align-items: center;
+        padding-top: 0px;
+    }
+
+    .Card__genders--detail p {
+        font-size: 14px;
+    }
+
+    .Information-card-detail {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .Information-card-detail div { 
+        padding: 0px;
+    }
+
+    .Information-card-detail__container {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .circular-progress {
+        height: 70px;
+        width: 70px;
+    }
+
+    .value-container {
+        font-size: 16px;
+    }
+
+    .Information-card-detail div .Information-card-detail__title {
+        padding: 40px 0px
+    }
+
+    .Information-card-detail__release-date h3, .Information-card-detail__popularity h3 {
+        font-size: 18px;
+    }
+
+    .Information-card-detail__release-date p, .Information-card-detail__popularity p{
+        font-size: 13px;
+        text-align: center;
+    }
+
+    .Information-card-detail .Information-card-detail__overview {
+        padding: 40px 0px;
+    }
+
+    .Information-card-detail__overview h3 {
+        font-size: 22px;
+        font-weight: 800;
+        color: rgb(134, 93, 255);
+    }
+
+    .Information-card-detail__overview p {
+        font-size: 13px;
+    }
 }

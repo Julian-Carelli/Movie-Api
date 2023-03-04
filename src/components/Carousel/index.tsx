@@ -1,13 +1,16 @@
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { Card } from '../Card';
 
 interface Iprops {
-  renderCards: Function;
+  contents: any;
+  contentType: any;
+  isFavoriteSection: any;
 }
 
 const Carousel: any = (props: Iprops) => {
-  const { renderCards } = props;
+  const { contents, contentType = null, isFavoriteSection } = props;
   const settings = {
     dots: true,
     infinite: false,
@@ -21,7 +24,8 @@ const Carousel: any = (props: Iprops) => {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          infinite: true,
+          initialSlide: 0,
+          infinite: false,
           dots: true,
         },
       },
@@ -30,14 +34,16 @@ const Carousel: any = (props: Iprops) => {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          initialSlide: 2,
+          initialSlide: 0,
         },
       },
       {
         breakpoint: 480,
         settings: {
+          dots: false,
           slidesToShow: 1,
           slidesToScroll: 1,
+          initialSlide: 0,
         },
       },
     ],
@@ -45,7 +51,19 @@ const Carousel: any = (props: Iprops) => {
 
   return (
     <div className="Carousel">
-      <Slider {...settings}>{renderCards && renderCards()}</Slider>
+      {contents && contents.length > 0 && (
+        <Slider {...settings}>
+          {contents.map((content) => (
+            <Card
+              movie={content}
+              isFavoriteSection={isFavoriteSection}
+              showIconHeart={true}
+              isDetail={false}
+              contentType={contentType}
+            />
+          ))}
+        </Slider>
+      )}
     </div>
   );
 };
