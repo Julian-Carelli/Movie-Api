@@ -67,6 +67,33 @@ const Carousel: any = (props: Iprops) => {
     },
     responsive: [
       {
+        breakpoint: 1600,
+        settings: {
+          dots: false,
+          slidesToShow: 4,
+          slidesToScroll: 4,
+          initialSlide: 0,
+        },
+      },
+      {
+        breakpoint: 1320,
+        settings: {
+          dots: false,
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          initialSlide: 0,
+        },
+      },
+      {
+        breakpoint: 1023,
+        settings: {
+          dots: false,
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 0,
+        },
+      },
+      {
         breakpoint: 480,
         settings: {
           dots: false,
