@@ -59,6 +59,17 @@ code {
     font-size: 36px;
 }
 
+.TOP__MOVIES__SHOWS__content, .YOUR__LIKED__STUFF__content {
+    text-align: center;
+    font-size: 36px;
+}
+
+.TOP__MOVIES__SHOWS__container, .YOUR__LIKED__STUFF__container {
+    display: flex;
+    padding-bottom: 40px;
+    justify-content: center;
+}
+
 .Search__container form svg {
     position: relative;
     left: -505px;
@@ -92,6 +103,7 @@ code {
 
 .Card {
     padding: 0px 40px;
+    padding-bottom: 40px!important;
     width: 300px;
     height: 600px;
 }
@@ -111,13 +123,15 @@ code {
     display: flex;
     justify-content: center;
     height: 60%;
+    border-radius: 10px;
 }
 
 .Card img {
     width: 300px;
     cursor: pointer;
     border-radius: 10px;
-    object-fit: cover;
+    object-fit: fill;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 .Card .Card__presentation {
@@ -145,10 +159,6 @@ code {
 
 .Card .Card__actions .Card__action {
     font-size: 26px;
-}
-
-.action__trash:hover {
-    opacity: 0.8;
 }
 
 .action__heart:hover {
@@ -189,6 +199,19 @@ code {
     padding: 0px 4px;
 }
 
+.Page-details {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 40px;
+}
+
+.Page-details__content h2 {
+    font-size: 50px; 
+    color: rgb(134, 93, 255); 
+}
+
 .circular-progress {
     position: relative;
     height: 100px;
@@ -211,30 +234,6 @@ code {
     position: relative;
     font-size: 20px;
     color: black;
-}
-
-.TOP__MOVIES__SHOWS__content, .YOUR__LIKED__STUFF__content {
-    text-align: center;
-    font-size: 36px;
-}
-
-.TOP__MOVIES__SHOWS__container, .YOUR__LIKED__STUFF__container {
-    display: flex;
-    padding-bottom: 40px;
-    justify-content: center;
-}
-
-.Page-details {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 40px;
-}
-
-.Page-details__content h2 {
-    font-size: 50px; 
-    color: rgb(134, 93, 255); 
 }
 
 .Information-card-detail {
@@ -267,17 +266,13 @@ code {
     display: none!important;
 }
 
+.slick-cloned { 
+    display: none!important;
+}
+
 @media (max-width: 480px) {
     .Navbar svg {
         font-size: 20px;
-    }
-    .Card__action {
-        padding-top: 20px;
-    }
-
-    .Card__actions {
-        padding-left: 0px;
-        justify-content: center;
     }
 
     .Search {
@@ -342,6 +337,7 @@ code {
 
     .Card__detail {
         width: 80%;
+        padding-bottom: 0px;
     }
 
     .Card__image {
@@ -353,8 +349,13 @@ code {
         padding-left: 0px;
     }
 
+    .Card .Card__action {
+        padding-top: 20px;
+    }
+
     .Card .Card__actions {
         padding-left: 0px;
+        justify-content: center;
     }
 
     .Card__image img {
@@ -372,16 +373,6 @@ code {
     .Card .Card__genders .Card__gender {
         margin: 5px 0px;
     }
-    
-    .Page-details__content {
-        width: 80%;
-    }
-
-    .Page-details__content h2 {
-        font-size: 21px;
-        color:rgb(134, 93, 255);
-        text-align: center;
-    }
 
     .Card .Card__genders--detail {
         font-size: 14px;
@@ -391,6 +382,16 @@ code {
 
     .Card__genders--detail p {
         font-size: 14px;
+    }
+
+    .Page-details__content {
+        width: 80%;
+    }
+
+    .Page-details__content h2 {
+        font-size: 21px;
+        color:rgb(134, 93, 255);
+        text-align: center;
     }
 
     .Information-card-detail {

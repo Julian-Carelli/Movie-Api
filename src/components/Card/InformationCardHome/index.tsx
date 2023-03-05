@@ -1,76 +1,10 @@
-/* eslint-disable array-callback-return*/
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
-import { ENDPOINT_IMAGES } from '../../../constants/urls';
-
-const IMAGE_NOT_FOUND =
-  'https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg';
+import { gendersName } from '../../../helpers/gendersName';
+import { existsImage } from '../../../helpers/existsImage';
 
 const isFavorite = (content, favorites) => {
   return favorites.some((favorite) => favorite.id === content.id);
-};
-const existsImage = (movie) => {
-  const neededKeys = ['poster_path', 'backdrop_path', 'poster_path'];
-  let keyActive: any = null;
-  neededKeys.some((key) => {
-    const isExistKey = movie && Object.keys(movie).includes(key) && movie[key];
-    if (isExistKey) {
-      keyActive = key;
-    }
-  });
-  return keyActive !== null
-    ? `${ENDPOINT_IMAGES}${movie[keyActive]}`
-    : IMAGE_NOT_FOUND;
-};
-
-const foundGenders = (movie, genderList, foundedGenders, isDetail) => {
-  try {
-    const genresIds =
-      movie?.genres || movie?.genre_ids
-        ? movie?.genres || movie?.genre_ids
-        : [];
-    if (!isDetail) {
-      return genresIds.map((id) => {
-        genderList?.genres.map((gender: any) => {
-          if (gender.id === id) {
-            const { name } = gender;
-            foundedGenders.push(name);
-          }
-        });
-      });
-    }
-    return genresIds.map((genderDetail) => {
-      genderList?.genres.map((gender: any) => {
-        if (gender.id === genderDetail.id) {
-          const { name } = gender;
-          foundedGenders.push(name);
-        }
-      });
-    });
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-const gendersName = (
-  genderList: any,
-  contentType: any,
-  movie: any,
-  isDetail: any
-) => {
-  if (!movie) {
-    return [];
-  }
-  const { genderSeries, genderMovies } = genderList;
-  const foundedGenders: any = [];
-  if (contentType === 'movie') {
-    foundGenders(movie, genderMovies, foundedGenders, isDetail);
-    movie['gender_name'] = foundedGenders;
-    return foundedGenders;
-  }
-  foundGenders(movie, genderSeries, foundedGenders, isDetail);
-  movie['gender_name'] = foundedGenders;
-  return foundedGenders;
 };
 
 const InformationCardHome = ({
@@ -84,7 +18,7 @@ const InformationCardHome = ({
   isFavoriteSection,
   isDetail,
 }) => (
-  <div>
+  <div className="Information-card-home">
     <div className="Card__image">
       <img
         onClick={() => goToPageDetail(movie, contentTypeCustom)}

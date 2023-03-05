@@ -10,6 +10,17 @@ import {
 } from '../constants/urls';
 import { restClient } from '../rest-client';
 
+const filterByMediaType = (results) => {
+  let newResults: any = [];
+  // eslint-disable-next-line array-callback-return
+  results.map((content: any) => {
+    if (content.media_type === ('tv' || 'movie')) {
+      newResults.push(content);
+    }
+  });
+  return newResults;
+};
+
 class MoviesService {
   async getTopMovies(page?: number) {
     const urlToGetPage = ENDPOINT_TOP_MOVIES + '&page=' + page;
@@ -54,7 +65,7 @@ class MoviesService {
   async getSearches(query) {
     const searchByQuery = ENDPOINT_SEARCH + query;
     const { results } = await restClient(searchByQuery);
-    return results;
+    return filterByMediaType(results);
   }
 }
 

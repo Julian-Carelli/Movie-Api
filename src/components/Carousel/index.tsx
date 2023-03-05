@@ -31,21 +31,25 @@ const Carousel: any = (props: Iprops) => {
     return actions.getTopSeries(page);
   };
 
+  const decideInitialSlide = (contentType) => {
+    return counterContentType[contentType].index;
+  };
+
   function isDecimal(input) {
     const inputNumber = input.toString();
     return inputNumber.includes('.');
   }
 
   const settings = {
+    speed: 500,
+    infinite: false,
     centerMode: false,
     dots: true,
-    infinite: false,
-    speed: 500,
     slidesToShow: 5,
     slidesToScroll: 5,
-    initialSlide: 0,
-    beforeChange: (_, b) => {
-      if (contentType && !isDecimal(b / 10)) {
+    initialSlide: contentType && decideInitialSlide(contentType),
+    afterChange: (b) => {
+      if (contentType && !isDecimal(b / 15)) {
         setCounterContentType({
           ...counterContentType,
           [contentType]: {
@@ -62,24 +66,6 @@ const Carousel: any = (props: Iprops) => {
       return false;
     },
     responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 0,
-          infinite: false,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 0,
-        },
-      },
       {
         breakpoint: 480,
         settings: {

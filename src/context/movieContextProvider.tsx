@@ -23,7 +23,7 @@ const MovieContextProvider = ({ children }) => {
   );
 
   const getTopSeries = useMemo(
-    () => async (page?: number, action?: string) => {
+    () => async (page?: number) => {
       const results = await moviesService.getTopSeries(page);
       dispatch({
         type: 'GET_SERIES',
@@ -91,7 +91,7 @@ const MovieContextProvider = ({ children }) => {
         console.log('load initial finished');
       })
       .catch((error) => {
-        console.error(error); //handlear errores
+        console.error(error);
       });
   }, []);
 
