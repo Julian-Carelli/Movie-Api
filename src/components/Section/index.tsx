@@ -8,6 +8,7 @@ const Section = ({
   isFavoriteSection,
   contents,
   contentType = null,
+  currentFilterToFocus,
 }) => {
   return (
     <div className={sectionName}>
@@ -21,6 +22,8 @@ const Section = ({
             getFilter={getFilter}
             filter={'all'}
             titleName={'All'}
+            currentFilterToFocus={currentFilterToFocus}
+            isFavoriteSection={isFavoriteSection}
           />
         )}
         <Filter
@@ -28,12 +31,16 @@ const Section = ({
           getFilter={getFilter}
           filter={'movie'}
           titleName={'Movies'}
+          currentFilterToFocus={currentFilterToFocus}
+          isFavoriteSection={isFavoriteSection}
         />
         <Filter
           filterClass={'Filter-tv'}
           getFilter={getFilter}
           filter={'tv'}
           titleName={'TV'}
+          currentFilterToFocus={currentFilterToFocus}
+          isFavoriteSection={isFavoriteSection}
         />
       </div>
       <Carousel

@@ -15,7 +15,15 @@ const Home = () => {
     content: null,
   });
   const [whichShow, setWhichShow] = useState('movie');
+  const [currentFilterToFocus, setCurrentFilterToFocus] = useState({
+    contentPopular: 'movie',
+    contentFavorite: 'all',
+  });
   const getFilterFavorites = (filter) => {
+    setCurrentFilterToFocus({
+      ...currentFilterToFocus,
+      contentFavorite: filter,
+    });
     if (filter === 'all') {
       return setFilterFavorite(null);
     }
@@ -26,6 +34,10 @@ const Home = () => {
   };
 
   const getContent = (contentType) => {
+    setCurrentFilterToFocus({
+      ...currentFilterToFocus,
+      contentPopular: contentType,
+    });
     setWhichShow(contentType);
     if (contentType === 'movie') {
       return setSelectionContentMovies({
@@ -73,6 +85,7 @@ const Home = () => {
         getFilter={getFilterFavorites}
         contents={filterFavorite || favorites}
         isFavoriteSection={true}
+        currentFilterToFocus={currentFilterToFocus.contentFavorite}
       />
       <Section
         sectionName={'TOP__MOVIES__SHOWS'}
@@ -89,6 +102,7 @@ const Home = () => {
             : selectionContentSeries.contentType
         }
         isFavoriteSection={false}
+        currentFilterToFocus={currentFilterToFocus.contentPopular}
       />
     </div>
   );
