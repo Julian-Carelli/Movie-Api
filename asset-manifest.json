@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/Movie-Api/static/css/main.b434986b.css",
-    "main.js": "/Movie-Api/static/js/main.76192367.js",
+    "main.css": "/Movie-Api/static/css/main.0541a245.css",
+    "main.js": "/Movie-Api/static/js/main.81121d0c.js",
     "static/media/slick.svg": "/Movie-Api/static/media/slick.2630a3e3eab21c607e21.svg",
     "static/media/slick.eot": "/Movie-Api/static/media/slick.a4e97f5a2a64f0ab1323.eot",
     "static/media/slick.ttf": "/Movie-Api/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "static/media/slick.woff": "/Movie-Api/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/Movie-Api/index.html",
-    "main.b434986b.css.map": "/Movie-Api/static/css/main.b434986b.css.map",
-    "main.76192367.js.map": "/Movie-Api/static/js/main.76192367.js.map"
+    "main.0541a245.css.map": "/Movie-Api/static/css/main.0541a245.css.map",
+    "main.81121d0c.js.map": "/Movie-Api/static/js/main.81121d0c.js.map"
   },
   "entrypoints": [
-    "static/css/main.b434986b.css",
-    "static/js/main.76192367.js"
+    "static/css/main.0541a245.css",
+    "static/js/main.81121d0c.js"
   ]
 }
