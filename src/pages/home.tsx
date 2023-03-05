@@ -4,13 +4,17 @@ import { Search } from '../components/Search';
 import { Section } from '../components/Section';
 
 const Home = () => {
+  const { movies, series, favorites }: any = useContext(MovieContext);
   const [filterFavorite, setFilterFavorite] = useState<any>(null);
-  const [selectionContent, setSelectionContent] = useState<any>({
+  const [selectionContentMovies, setSelectionContentMovies] = useState<any>({
     contentType: '',
     content: null,
   });
-  const { movies, series, favorites }: any = useContext(MovieContext);
-
+  const [selectionContentSeries, setSelectionContentSeries] = useState<any>({
+    contentType: '',
+    content: null,
+  });
+  const [whichShow, setWhichShow] = useState('movie');
   const getFilterFavorites = (filter) => {
     if (filter === 'all') {
       return setFilterFavorite(null);
@@ -22,32 +26,33 @@ const Home = () => {
   };
 
   const getContent = (contentType) => {
+    setWhichShow(contentType);
     if (contentType === 'movie') {
-      return setSelectionContent({
+      return setSelectionContentMovies({
         contentType: 'movie',
         content: movies,
       });
     }
 
-    return setSelectionContent({
+    return setSelectionContentSeries({
       contentType: 'tv',
       content: series,
     });
   };
 
   useEffect(() => {
-    setSelectionContent({
-      contentType: 'tv',
-      content: series,
-    });
-  }, [series]);
-
-  useEffect(() => {
-    setSelectionContent({
+    setSelectionContentMovies({
       contentType: 'movie',
       content: movies,
     });
   }, [movies]);
+
+  useEffect(() => {
+    setSelectionContentSeries({
+      contentType: 'tv',
+      content: series,
+    });
+  }, [series]);
 
   useEffect(() => {
     setFilterFavorite(favorites);
@@ -55,7 +60,13 @@ const Home = () => {
 
   return (
     <div>
-      <Search setSelectionContent={setSelectionContent} />
+      <Search
+        setSelectionContent={
+          whichShow === 'movie'
+            ? setSelectionContentMovies
+            : setSelectionContentSeries
+        }
+      />
       <Section
         sectionName={'YOUR__LIKED__STUFF'}
         sectionTitle={'Your liked stuff'}
@@ -67,8 +78,16 @@ const Home = () => {
         sectionName={'TOP__MOVIES__SHOWS'}
         sectionTitle={'Top Movies and Shows'}
         getFilter={getContent}
-        contents={selectionContent.content}
-        contentType={selectionContent.contentType}
+        contents={
+          whichShow === 'movie'
+            ? selectionContentMovies.content
+            : selectionContentSeries.content
+        }
+        contentType={
+          whichShow === 'movie'
+            ? selectionContentMovies.contentType
+            : selectionContentSeries.contentType
+        }
         isFavoriteSection={false}
       />
     </div>

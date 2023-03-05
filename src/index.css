@@ -270,6 +270,18 @@ code {
     display: none!important;
 }
 
+.Not-Found {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Not-Found img { 
+    width: 1400px;
+    height: 900px;
+    cursor: 'pointer';
+}
+
 @media (max-width: 480px) {
     .Navbar svg {
         font-size: 20px;
@@ -447,5 +459,15 @@ code {
 
     .Information-card-detail__overview p {
         font-size: 13px;
+    }
+
+    .Not-Found {
+        height: 100vh;
+    }
+    
+    .Not-Found img { 
+        width: 100%;
+        height: 100%;
+        cursor: 'pointer';
     }
 }

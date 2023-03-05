@@ -3,6 +3,7 @@ import { MovieContextProvider } from './context/movieContextProvider';
 import { Home } from './pages/home';
 import { Navbar } from './components/Navbar/index';
 import { PageDetails } from './pages/pageDetails';
+import { NotFound } from './components/NotFound';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
               <Route index element={<Home />} />
               <Route path="/movie/:name" element={<PageDetails />} />
               <Route path="/tv/:name" element={<PageDetails />} />
+              <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>
         </MovieContextProvider>
