@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return*/
 import { ENDPOINT_IMAGES } from '../constants/urls';
 
 const IMAGE_NOT_FOUND =
