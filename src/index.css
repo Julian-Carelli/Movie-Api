@@ -381,6 +381,13 @@ code {
         padding: 0px;
     }
 
+    .Card img:hover {
+        -webkit-transform: none;
+        -ms-transform: none;
+        transform: none;
+        transition: none;
+    }
+
     .Card__information {
         padding-left: 0px;
     }

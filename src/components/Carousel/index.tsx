@@ -31,14 +31,26 @@ const Carousel: any = (props: Iprops) => {
     return actions.getTopSeries(page);
   };
 
-  const decideInitialSlide = (contentType) => {
-    return counterContentType[contentType].index;
-  };
-
-  function isDecimal(input) {
+  const isDecimal = (input) => {
     const inputNumber = input.toString();
     return inputNumber.includes('.');
-  }
+  };
+
+  const getNewContentInScroll = (b, divide) => {
+    if (contentType && !isDecimal(b / divide)) {
+      setCounterContentType({
+        ...counterContentType,
+        [contentType]: {
+          counter: (counterContentType[contentType].counter += 1),
+        },
+      });
+
+      decideHydrateMoviesOrSeries(
+        contentType,
+        counterContentType[contentType].counter
+      );
+    }
+  };
 
   const settings = {
     speed: 500,
@@ -47,23 +59,9 @@ const Carousel: any = (props: Iprops) => {
     dots: true,
     slidesToShow: 5,
     slidesToScroll: 5,
-    initialSlide: contentType && decideInitialSlide(contentType),
+    initialSlide: 0,
     afterChange: (b) => {
-      if (contentType && !isDecimal(b / 15)) {
-        setCounterContentType({
-          ...counterContentType,
-          [contentType]: {
-            counter: (counterContentType[contentType].counter += 1),
-          },
-        });
-
-        decideHydrateMoviesOrSeries(
-          contentType,
-          counterContentType[contentType].counter
-        );
-      }
-
-      return false;
+      getNewContentInScroll(b, 15);
     },
     responsive: [
       {
@@ -73,6 +71,9 @@ const Carousel: any = (props: Iprops) => {
           slidesToShow: 4,
           slidesToScroll: 4,
           initialSlide: 0,
+          afterChange: (b) => {
+            getNewContentInScroll(b, 12);
+          },
         },
       },
       {
@@ -82,6 +83,9 @@ const Carousel: any = (props: Iprops) => {
           slidesToShow: 3,
           slidesToScroll: 3,
           initialSlide: 0,
+          afterChange: (b) => {
+            getNewContentInScroll(b, 9);
+          },
         },
       },
       {
@@ -91,6 +95,9 @@ const Carousel: any = (props: Iprops) => {
           slidesToShow: 2,
           slidesToScroll: 2,
           initialSlide: 0,
+          afterChange: (b) => {
+            getNewContentInScroll(b, 6);
+          },
         },
       },
       {
@@ -100,6 +107,9 @@ const Carousel: any = (props: Iprops) => {
           slidesToShow: 1,
           slidesToScroll: 1,
           initialSlide: 0,
+          afterChange: (b) => {
+            getNewContentInScroll(b, 3);
+          },
         },
       },
     ],
@@ -111,6 +121,7 @@ const Carousel: any = (props: Iprops) => {
         <Slider {...settings}>
           {contents.map((content) => (
             <Card
+              key={content.id}
               movie={content}
               isFavoriteSection={isFavoriteSection}
               showIconHeart={true}

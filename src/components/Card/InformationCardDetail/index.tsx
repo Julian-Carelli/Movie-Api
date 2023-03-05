@@ -29,7 +29,9 @@ const drawProgressBar = (voteAverage) => {
 };
 
 const InformationCardDetail = ({ movie }) => {
-  useEffect(() => drawProgressBar(movie?.vote_average), []);
+  useEffect(() => {
+    drawProgressBar(movie?.vote_average);
+  }, []);
 
   return (
     <div className="Information-card-detail">
