@@ -1,46 +1,66 @@
-# Getting Started with Create React App
+# Movie Api
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Un proyecto que trabaja con la API "The Movie db" para mostrar y buscar series y peliculas de una manera sencilla y eficaz. 
 
-## Available Scripts
+## Comenzando 🚀
 
-In the project directory, you can run:
+Clonando el proyecto
 
-### `npm start`
+```
+git clone git@github.com:Julian-Carelli/Movie-Api.git
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Pre-requisitos 📋
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```
+node -v v15.14.0
+npm -v 7.9.0
+```
 
-### `npm test`
+### Pasos a tener en cuenta antes de ejecutar la app
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Se debe crear una copia del archivo .env.example y llamarlo .env
 
-### `npm run build`
+```
+REACT_APP_API_KEY={KEY PASADA POR MAIL}
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Instalación 🔧
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Para poder correr el proyecto de forma local
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+instalar todas las dependencias del proyecto
 
-### `npm run eject`
+```
+npm i
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+ejecutar el comando para el ambiente de desarrollo
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+npm run start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Ejecutar la app dentro de un contenedor con docker
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```
+npm run docker:create
+```
 
-## Learn More
+### Reconstruir la imagen de la app con docker
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+npm run docker:create
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Construido con 🛠️
+
+En este proyecto se trabajaron con las siguientes tecnologías: Typescript y React.
+
+
+⌨️ con ❤️ por [julian-carelli](https://github.com/julian-carelli) 😊
+
+Link del proyecto: [Movie-Api](https://julian-carelli.github.io/Movie-Api/)
+
+
+
