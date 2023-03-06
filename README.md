@@ -1,6 +1,6 @@
 # Movie Api
 
-Un proyecto que trabaja con la API "The Movie db" para mostrar y buscar series y peliculas de una manera sencilla y eficaz. 
+Un proyecto que trabaja con la API "The Movie db" para buscar series y peliculas de una manera sencilla y eficaz. 
 
 ## Comenzando 🚀
 
