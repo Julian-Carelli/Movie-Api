@@ -1,8 +1,3 @@
-export type TParamsSelectContent = {
-  contentType: IMediaType | string;
-  content: IResponseDetail;
-};
-
 export type TDispatchFavorites = (favorite: IResponseDetail) => void;
 export type TDispatchTop = (page?: number) => Promise<void>;
 export type TContent = IResponseDetail[] | [];
@@ -20,15 +15,6 @@ export interface IActions {
   deleteToFavorites: TDispatchFavorites;
   getTopSeries: TDispatchTop;
   getTopMovies: TDispatchTop;
-}
-
-export interface IValue {
-  movies: TContent;
-  series: TContent;
-  favorites: TContent;
-  actions: IActions;
-  genderSeries: TGenderList;
-  genderMovies: TGenderList;
 }
 
 export interface IGender {
@@ -69,8 +55,6 @@ export interface IResponseDetail {
   vote_average: number;
   vote_counter: number;
 }
-
-//REDUCER TYPES START
 
 export type TAddToFavorite = {
   type: 'ADD_TO_FAVORITE';
@@ -123,10 +107,6 @@ export interface IInitialState {
   genderSeries: TGenderList;
   genderMovies: TGenderList;
 }
-
-//REDUCER TYPES FINISH
-
-//HOME TYPES FINISH
 
 export type TSelectionContent = {
   contentType: IMediaType | string;

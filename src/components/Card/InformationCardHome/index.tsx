@@ -5,20 +5,11 @@ import { existsImage } from '../../../helpers/existsImage';
 import { IInitialState, IResponseDetail } from '../../../types';
 import { useContext } from 'react';
 import { MovieContext } from '../../../context/movieContextProvider';
+import { IProps } from './interface';
 
 const isFavorite = (content: IResponseDetail, favorites: IResponseDetail[]) => {
   return favorites.some((favorite) => favorite.id === content.id);
 };
-
-interface IProps {
-  movie: IResponseDetail;
-  contentTypeCustom: string;
-  goToPageDetail: (movie: IResponseDetail, contentTypeCustom: string) => void;
-  contentType: string;
-  showIconHeart: boolean;
-  isFavoriteSection: boolean;
-  isDetail: boolean;
-}
 
 const InformationCardHome = ({
   movie,

@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps*/
 import { useEffect } from 'react';
-import { IResponseDetail } from '../../../types';
+import { IProps } from './interface';
 
 const drawProgressBar = (voteAverage: number) => {
   let progressBar = document.querySelector<HTMLElement>('.circular-progress');
@@ -31,10 +31,6 @@ const drawProgressBar = (voteAverage: number) => {
     }
   }, speed);
 };
-
-interface IProps {
-  movie: IResponseDetail;
-}
 
 const InformationCardDetail = ({ movie }: IProps) => {
   useEffect(() => {

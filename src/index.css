@@ -17,12 +17,24 @@ code {
     background-color: #865DFF;
 }
 
+.Navbar a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
 .Navbar svg {
     font-size: 30px;
     color: #191825;
 }
 
-.Navbar svg:hover {
+.Navbar span {
+    padding-left: 10px;
+    color: #191825;
+    font-weight: 800;
+}
+
+.Navbar svg:hover, .Navbar span:hover {
     color: #2F58CD;
 }
 
@@ -93,6 +105,10 @@ code {
     opacity: 1;
 }
 
+.TOP__MOVIES__SHOWS__container .Filter-movie, .YOUR__LIKED__STUFF__container .Filter-all{
+    margin-left: 0px;
+}
+
 .Filter-favorite-active-all, .Filter-favorite-active-tv, .Filter-favorite-active-movie, .Filter-popular-active-tv, .Filter-popular-active-movie {
     background: #865DFF;
     font-weight: 800;
@@ -107,14 +123,13 @@ code {
 }
 
 .Card {
-    padding: 0px 40px;
-    padding-bottom: 40px!important;
+    padding-top: 40px!important;
+    padding-bottom: 80px!important;
     width: 300px;
     height: 600px;
 }
 
-.Card__detail {
-    padding: 0px 40px;
+.Card__detail  {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -161,14 +176,14 @@ code {
 }
 
 .Card__information {
-    padding-top: 40px;
-    padding-left: 5px;
+    padding-top: 30px;
 }
 
 .Card .Card__actions {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 10px;
     
 }
 
@@ -202,7 +217,7 @@ code {
     justify-content: center;
     flex-wrap: wrap;
     align-items: center;
-    padding-top: 40px;
+    padding-top: 80px;
 }
 
 .Card__genders--detail p{
@@ -212,6 +227,7 @@ code {
 
 .Card .Card__gender {
     padding: 0px 4px;
+    margin: 5px 0px;
 }
 
 .Page-details {
@@ -277,12 +293,34 @@ code {
     color: rgb(134, 93, 255);
 }
 
+.slick-current {
+    display: flex!important;
+    justify-content: center!important;
+}
+
 .slick-dots {
     display: none!important;
 }
 
 .slick-cloned { 
     display: none!important;
+}
+
+.slick-prev:before, .slick-next:before {
+    font-size: 100px!important;
+}
+
+.slick-prev {
+    left: 0% !important;
+    top: 33%!important;
+    font-size: 50px!important;
+    z-index: 1;
+}
+
+.slick-next {
+    right: 4% !important;
+    top: 33%!important;
+    z-index: 1;
 }
 
 .Not-Found {
@@ -308,6 +346,11 @@ code {
 @media (max-width: 480px) {
     .Navbar svg {
         font-size: 20px;
+    }
+
+    .Navbar span {
+        font-size: 12px;
+
     }
 
     .Search {

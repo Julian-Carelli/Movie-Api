@@ -4,13 +4,8 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { Card } from '../Card';
 import { MovieContext } from '../../context/movieContextProvider';
-import { IResponseDetail } from '../../types';
-
-interface IProps {
-  contents: IResponseDetail[] | null;
-  contentType: string;
-  isFavoriteSection: boolean;
-}
+import { SampleArrow } from '../SampleArrow';
+import { IProps } from './interface';
 
 const Carousel = ({ contents, contentType, isFavoriteSection }: IProps) => {
   const { actions } = useContext(MovieContext);
@@ -63,29 +58,35 @@ const Carousel = ({ contents, contentType, isFavoriteSection }: IProps) => {
     slidesToShow: 5,
     slidesToScroll: 5,
     initialSlide: 0,
+    nextArrow: <SampleArrow />,
+    prevArrow: <SampleArrow />,
     afterChange: (b: number) => {
       getNewContentInScroll(b, 15);
     },
     responsive: [
       {
-        breakpoint: 1600,
+        breakpoint: 1750,
         settings: {
           dots: false,
           slidesToShow: 4,
           slidesToScroll: 4,
           initialSlide: 0,
+          nextArrow: <SampleArrow />,
+          prevArrow: <SampleArrow />,
           afterChange: (b: number) => {
             getNewContentInScroll(b, 12);
           },
         },
       },
       {
-        breakpoint: 1320,
+        breakpoint: 1400,
         settings: {
           dots: false,
           slidesToShow: 3,
           slidesToScroll: 3,
           initialSlide: 0,
+          nextArrow: <SampleArrow />,
+          prevArrow: <SampleArrow />,
           afterChange: (b: number) => {
             getNewContentInScroll(b, 9);
           },
@@ -98,6 +99,8 @@ const Carousel = ({ contents, contentType, isFavoriteSection }: IProps) => {
           slidesToShow: 2,
           slidesToScroll: 2,
           initialSlide: 0,
+          nextArrow: <SampleArrow />,
+          prevArrow: <SampleArrow />,
           afterChange: (b: number) => {
             getNewContentInScroll(b, 6);
           },
@@ -109,6 +112,7 @@ const Carousel = ({ contents, contentType, isFavoriteSection }: IProps) => {
           dots: false,
           slidesToShow: 1,
           slidesToScroll: 1,
+          arrows: false,
           initialSlide: 0,
           afterChange: (b: number) => {
             getNewContentInScroll(b, 3);
@@ -121,6 +125,7 @@ const Carousel = ({ contents, contentType, isFavoriteSection }: IProps) => {
           dots: false,
           slidesToShow: 1,
           slidesToScroll: 1,
+          arrows: false,
           initialSlide: 0,
           afterChange: (b: number) => {
             getNewContentInScroll(b, 3);

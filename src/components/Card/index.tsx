@@ -3,14 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { InformationCardHome } from './InformationCardHome';
 import { InformationCardDetail } from './InformationCardDetail';
 import { IResponseDetail } from '../../types';
-
-interface Iprops {
-  movie: IResponseDetail;
-  contentType: string;
-  isFavoriteSection: boolean;
-  showIconHeart: boolean;
-  isDetail: boolean;
-}
+import { Iprops } from './interface';
 
 const Card = ({
   movie,

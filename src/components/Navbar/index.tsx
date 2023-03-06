@@ -7,6 +7,7 @@ const Navbar = () => {
     <div className="Navbar">
       <Link to={'/'}>
         <FontAwesomeIcon icon={faClapperboard} />
+        <span>The Film Club</span>
       </Link>
     </div>
   );

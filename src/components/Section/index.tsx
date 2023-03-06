@@ -1,16 +1,6 @@
-import { IMediaType, IResponseDetail } from '../../types';
 import { Carousel } from '../Carousel';
 import { Filter } from '../Filter';
-
-interface IProps {
-  sectionName: string;
-  sectionTitle: string;
-  getFilter: (contentType: IMediaType) => void;
-  isFavoriteSection: boolean;
-  contents: IResponseDetail[] | null;
-  contentType: string;
-  currentFilterToFocus: string;
-}
+import { IProps } from './interface';
 
 const Section = ({
   sectionName,

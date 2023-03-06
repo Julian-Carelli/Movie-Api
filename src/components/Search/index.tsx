@@ -2,13 +2,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import { MoviesService } from '../../services/moviesService';
-import { TSelectionContent } from '../../types';
+import { IProps } from './interface';
 
 const movieService = new MoviesService();
-
-interface IProps {
-  setSelectionContent: React.Dispatch<React.SetStateAction<TSelectionContent>>;
-}
 
 const Search = ({ setSelectionContent }: IProps) => {
   const [value, setValue] = useState<any>();

@@ -1,13 +1,4 @@
-import { IMediaType } from '../../types';
-
-interface IProps {
-  filterClass: string;
-  getFilter: (contentType: IMediaType) => void;
-  filter: IMediaType;
-  titleName: string;
-  currentFilterToFocus: string;
-  isFavoriteSection: boolean;
-}
+import { IProps } from './interface';
 
 const Filter = ({
   filterClass,
