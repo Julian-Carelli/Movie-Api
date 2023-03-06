@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { IResponseDetail } from '../../../types';
 
 const drawProgressBar = (voteAverage: number) => {
-  let progressBar: HTMLElement = document.querySelector('.circular-progress');
+  let progressBar = document.querySelector<HTMLElement>('.circular-progress');
   let valueContainer = document.querySelector('.value-container');
 
   const total = Math.round((voteAverage * 100) / 10);
@@ -12,6 +12,9 @@ const drawProgressBar = (voteAverage: number) => {
   let speed = 50;
 
   let progress: ReturnType<typeof setInterval> = setInterval(() => {
+    if (progressBar === null) {
+      return false;
+    }
     if (!valueContainer || progressEndValue === 0) {
       progressBar.style.background = 'black';
       return clearInterval(progress);

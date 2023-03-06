@@ -8,12 +8,12 @@ const foundGenders = (
   isDetail: boolean
 ) => {
   try {
-    const genresIds =
-      movie?.genres || movie?.genre_ids
-        ? movie?.genres || movie?.genre_ids
-        : [];
+    const genresIdsInDetail: number[] = movie?.genre_ids
+      ? movie?.genre_ids
+      : [];
+    const genresIdsInHome: IGender[] = movie?.genres ? movie?.genres : [];
     if (!isDetail) {
-      return genresIds.map((id) => {
+      return genresIdsInDetail.map((id) => {
         genderList?.genres.map((gender: IGender) => {
           if (gender.id === id) {
             const { name } = gender;
@@ -22,7 +22,7 @@ const foundGenders = (
         });
       });
     }
-    return genresIds.map((genderDetail) => {
+    return genresIdsInHome.map((genderDetail) => {
       genderList?.genres.map((gender: IGender) => {
         if (gender.id === genderDetail.id) {
           const { name } = gender;

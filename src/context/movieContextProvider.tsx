@@ -2,9 +2,9 @@
 import { createContext, useEffect, useReducer, useMemo } from 'react';
 import { movieReducer, initialState } from '../reducer/movieReducer';
 import { MoviesService } from '../services/moviesService';
-import { IInitialState, IResponseDetail } from '../types';
+import { IInitialState, IResponseDetail, TGenderList } from '../types';
 
-const MovieContext = createContext<IInitialState | null>(null);
+const MovieContext = createContext<IInitialState>(initialState);
 
 interface IProps {
   children: React.ReactNode;
@@ -36,7 +36,7 @@ const MovieContextProvider = ({ children }: IProps) => {
 
   const getGenderListSeries = useMemo(
     () => async () => {
-      const results = await moviesService.getGenreTvShowList();
+      const results: TGenderList = await moviesService.getGenreTvShowList();
       dispatch({
         type: 'GET_GENDER_LIST_SERIES',
         payload: {
@@ -49,7 +49,7 @@ const MovieContextProvider = ({ children }: IProps) => {
 
   const getGenderListMovies = useMemo(
     () => async () => {
-      const results = await moviesService.getGenreMovieList();
+      const results: TGenderList = await moviesService.getGenreMovieList();
       dispatch({
         type: 'GET_GENDER_LIST_MOVIES',
         payload: {
@@ -94,7 +94,7 @@ const MovieContextProvider = ({ children }: IProps) => {
       });
   }, []);
 
-  const value = {
+  const value: IInitialState = {
     movies: state.movies,
     series: state.series,
     favorites: state.favorites,

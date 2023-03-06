@@ -1,11 +1,25 @@
 import { IActionsReducer, IInitialState } from '../types';
 
-const initialState: IInitialState = {
+let initialState: IInitialState = {
   movies: [],
   series: [],
   favorites: [],
-  genderMovies: [],
-  genderSeries: [],
+  genderMovies: {
+    genres: [
+      {
+        id: 1,
+        name: '',
+      },
+    ],
+  },
+  genderSeries: {
+    genres: [
+      {
+        id: 1,
+        name: '',
+      },
+    ],
+  },
 };
 const movieReducer = (
   state: IInitialState,

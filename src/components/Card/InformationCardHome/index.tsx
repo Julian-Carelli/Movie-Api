@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { gendersName } from '../../../helpers/gendersName';
 import { existsImage } from '../../../helpers/existsImage';
-import { IResponseDetail, IValue } from '../../../types';
+import { IInitialState, IResponseDetail } from '../../../types';
 import { useContext } from 'react';
 import { MovieContext } from '../../../context/movieContextProvider';
 
@@ -29,7 +29,7 @@ const InformationCardHome = ({
   isFavoriteSection,
   isDetail,
 }: IProps) => {
-  const value: IValue = useContext(MovieContext);
+  const value: IInitialState = useContext(MovieContext);
   const genderList = {
     genderSeries: value?.genderSeries,
     genderMovies: value?.genderMovies,
@@ -83,8 +83,8 @@ const InformationCardHome = ({
               icon={faHeart}
               onClick={
                 isFavoriteSection
-                  ? () => value.actions.deleteToFavorites(movie)
-                  : () => value.actions.addToFavorites(movie)
+                  ? () => value.actions?.deleteToFavorites(movie)
+                  : () => value.actions?.addToFavorites(movie)
               }
             />
           </div>

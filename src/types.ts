@@ -94,12 +94,12 @@ export type TGetMovies = {
 
 export type TGenderListSeries = {
   type: 'GET_GENDER_LIST_SERIES';
-  payload: { genderSeries: TGenderList[] | [] };
+  payload: { genderSeries: TGenderList };
 };
 
 export type TGenderListMovies = {
   type: 'GET_GENDER_LIST_MOVIES';
-  payload: { genderMovies: TGenderList[] | [] };
+  payload: { genderMovies: TGenderList };
 };
 
 export type IActionsReducer =
@@ -111,11 +111,17 @@ export type IActionsReducer =
   | TGenderListMovies;
 
 export interface IInitialState {
+  actions?: {
+    deleteToFavorites: (favorite: IResponseDetail) => void;
+    addToFavorites: (favorite: IResponseDetail) => void;
+    getTopSeries: (page?: number) => Promise<void>;
+    getTopMovies: (page?: number) => Promise<void>;
+  };
   movies: IResponseDetail[] | [];
   series: IResponseDetail[] | [];
   favorites: IResponseDetail[] | [];
-  genderSeries: TGenderList[] | [];
-  genderMovies: TGenderList[] | [];
+  genderSeries: TGenderList;
+  genderMovies: TGenderList;
 }
 
 //REDUCER TYPES FINISH

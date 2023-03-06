@@ -4,7 +4,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { Card } from '../Card';
 import { MovieContext } from '../../context/movieContextProvider';
-import { IActions, IResponseDetail } from '../../types';
+import { IResponseDetail } from '../../types';
 
 interface IProps {
   contents: IResponseDetail[] | null;
@@ -13,7 +13,7 @@ interface IProps {
 }
 
 const Carousel = ({ contents, contentType, isFavoriteSection }: IProps) => {
-  const { actions }: { actions: IActions } = useContext(MovieContext);
+  const { actions } = useContext(MovieContext);
   const [counterContentType, setCounterContentType] = useState({
     movie: {
       counter: 1,
@@ -25,10 +25,10 @@ const Carousel = ({ contents, contentType, isFavoriteSection }: IProps) => {
 
   const decideHydrateMoviesOrSeries = (contentType: string, page: number) => {
     if (contentType === 'movie') {
-      return actions.getTopMovies(page);
+      return actions?.getTopMovies(page);
     }
 
-    return actions.getTopSeries(page);
+    return actions?.getTopSeries(page);
   };
 
   const isDecimal = (input: number) => {

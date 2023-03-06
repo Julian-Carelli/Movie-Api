@@ -1,4 +1,4 @@
-const restClient = async (url) => {
+const restClient = async (url: string) => {
   try {
     const data = await fetch(url);
     const response = await data.json();
