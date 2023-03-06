@@ -50,7 +50,7 @@ npm run docker:create
 ### Reconstruir la imagen de la app con docker
 
 ```
-npm run docker:create
+npm run docker:rebuild
 ```
 
 ## Construido con 🛠️
