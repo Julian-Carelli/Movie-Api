@@ -1,10 +1,9 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { Card } from '../Card';
 import { MovieContext } from '../../context/movieContextProvider';
-import { SampleArrow } from '../SampleArrow';
 import { IProps } from './interface';
 
 const Carousel = ({ contents, contentType, isFavoriteSection }: IProps) => {
@@ -17,6 +16,7 @@ const Carousel = ({ contents, contentType, isFavoriteSection }: IProps) => {
       counter: 1,
     },
   });
+  const slider = useRef<Slider>(null);
 
   const decideHydrateMoviesOrSeries = (contentType: string, page: number) => {
     if (contentType === 'movie') {
@@ -54,12 +54,11 @@ const Carousel = ({ contents, contentType, isFavoriteSection }: IProps) => {
     speed: 500,
     infinite: false,
     centerMode: false,
-    dots: true,
+    dots: false,
     slidesToShow: 5,
     slidesToScroll: 5,
     initialSlide: 0,
-    nextArrow: <SampleArrow />,
-    prevArrow: <SampleArrow />,
+    arrows: false,
     afterChange: (b: number) => {
       getNewContentInScroll(b, 15);
     },
@@ -67,12 +66,10 @@ const Carousel = ({ contents, contentType, isFavoriteSection }: IProps) => {
       {
         breakpoint: 1750,
         settings: {
-          dots: false,
           slidesToShow: 4,
           slidesToScroll: 4,
           initialSlide: 0,
-          nextArrow: <SampleArrow />,
-          prevArrow: <SampleArrow />,
+          arrows: false,
           afterChange: (b: number) => {
             getNewContentInScroll(b, 12);
           },
@@ -85,8 +82,7 @@ const Carousel = ({ contents, contentType, isFavoriteSection }: IProps) => {
           slidesToShow: 3,
           slidesToScroll: 3,
           initialSlide: 0,
-          nextArrow: <SampleArrow />,
-          prevArrow: <SampleArrow />,
+          arrows: false,
           afterChange: (b: number) => {
             getNewContentInScroll(b, 9);
           },
@@ -99,8 +95,7 @@ const Carousel = ({ contents, contentType, isFavoriteSection }: IProps) => {
           slidesToShow: 2,
           slidesToScroll: 2,
           initialSlide: 0,
-          nextArrow: <SampleArrow />,
-          prevArrow: <SampleArrow />,
+          arrows: false,
           afterChange: (b: number) => {
             getNewContentInScroll(b, 6);
           },
@@ -135,10 +130,16 @@ const Carousel = ({ contents, contentType, isFavoriteSection }: IProps) => {
     ],
   };
 
+  useEffect(() => {
+    if (slider && slider.current) {
+      slider.current.slickGoTo(0);
+    }
+  }, [contentType]);
+
   return (
     <div className="Carousel">
       {contents && contents.length > 0 && (
-        <Slider {...settings}>
+        <Slider {...settings} ref={slider}>
           {contents.map((content) => (
             <Card
               key={content.id}
