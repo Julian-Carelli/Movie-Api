@@ -2,38 +2,37 @@
 import { createContext, useEffect, useReducer, useMemo } from 'react';
 import { movieReducer, initialState } from '../reducer/movieReducer';
 import { MoviesService } from '../services/moviesService';
+import { IInitialState, IResponseDetail } from '../types';
 
-const MovieContext: any = createContext(null);
+const MovieContext = createContext<IInitialState | null>(null);
 
-const MovieContextProvider = ({ children }) => {
+interface IProps {
+  children: React.ReactNode;
+}
+
+const MovieContextProvider = ({ children }: IProps) => {
   const [state, dispatch] = useReducer(movieReducer, initialState);
   const moviesService = new MoviesService();
 
-  const getTopMovies = useMemo(
-    () => async (page?: number) => {
-      const results = await moviesService.getTopMovies(page);
-      dispatch({
-        type: 'GET_MOVIES',
-        payload: {
-          movies: results,
-        },
-      });
-    },
-    []
-  );
+  const getTopMovies = async (page?: number) => {
+    const results: IResponseDetail[] = await moviesService.getTopMovies(page);
+    dispatch({
+      type: 'GET_MOVIES',
+      payload: {
+        movies: results,
+      },
+    });
+  };
 
-  const getTopSeries = useMemo(
-    () => async (page?: number) => {
-      const results = await moviesService.getTopSeries(page);
-      dispatch({
-        type: 'GET_SERIES',
-        payload: {
-          series: results,
-        },
-      });
-    },
-    []
-  );
+  const getTopSeries = async (page?: number) => {
+    const results = await moviesService.getTopSeries(page);
+    dispatch({
+      type: 'GET_SERIES',
+      payload: {
+        series: results,
+      },
+    });
+  };
 
   const getGenderListSeries = useMemo(
     () => async () => {
@@ -61,7 +60,7 @@ const MovieContextProvider = ({ children }) => {
     []
   );
 
-  const addToFavorites = (favorite) => {
+  const addToFavorites = (favorite: IResponseDetail) => {
     dispatch({
       type: 'ADD_TO_FAVORITE',
       payload: {
@@ -70,7 +69,7 @@ const MovieContextProvider = ({ children }) => {
     });
   };
 
-  const deleteToFavorites = (favorite) => {
+  const deleteToFavorites = (favorite: IResponseDetail) => {
     dispatch({
       type: 'DELETE_TO_FAVORITE',
       payload: {
@@ -107,7 +106,6 @@ const MovieContextProvider = ({ children }) => {
     },
     genderSeries: state.genderSeries,
     genderMovies: state.genderMovies,
-    selectionContent: state.selectionContent,
   };
 
   return (

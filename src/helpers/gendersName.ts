@@ -1,5 +1,12 @@
+import { IGender, IResponseDetail, TGenderList } from '../types';
+
 /* eslint-disable array-callback-return*/
-const foundGenders = (movie, genderList, foundedGenders, isDetail) => {
+const foundGenders = (
+  movie: IResponseDetail,
+  genderList: TGenderList,
+  foundedGenders: string[],
+  isDetail: boolean
+) => {
   try {
     const genresIds =
       movie?.genres || movie?.genre_ids
@@ -7,7 +14,7 @@ const foundGenders = (movie, genderList, foundedGenders, isDetail) => {
         : [];
     if (!isDetail) {
       return genresIds.map((id) => {
-        genderList?.genres.map((gender: any) => {
+        genderList?.genres.map((gender: IGender) => {
           if (gender.id === id) {
             const { name } = gender;
             foundedGenders.push(name);
@@ -16,7 +23,7 @@ const foundGenders = (movie, genderList, foundedGenders, isDetail) => {
       });
     }
     return genresIds.map((genderDetail) => {
-      genderList?.genres.map((gender: any) => {
+      genderList?.genres.map((gender: IGender) => {
         if (gender.id === genderDetail.id) {
           const { name } = gender;
           foundedGenders.push(name);
@@ -29,16 +36,19 @@ const foundGenders = (movie, genderList, foundedGenders, isDetail) => {
 };
 
 export const gendersName = (
-  genderList: any,
-  contentType: any,
-  movie: any,
-  isDetail: any
+  genderList: {
+    genderSeries: TGenderList;
+    genderMovies: TGenderList;
+  },
+  contentType: string,
+  movie: IResponseDetail,
+  isDetail: boolean
 ) => {
   if (!movie) {
     return [];
   }
   const { genderSeries, genderMovies } = genderList;
-  const foundedGenders: any = [];
+  const foundedGenders: string[] = [];
   if (contentType === 'movie') {
     foundGenders(movie, genderMovies, foundedGenders, isDetail);
     movie['gender_name'] = foundedGenders;

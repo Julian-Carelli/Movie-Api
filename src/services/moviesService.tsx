@@ -9,11 +9,12 @@ import {
   API_KEY,
 } from '../constants/urls';
 import { restClient } from '../rest-client';
+import { IResponseDetail } from '../types';
 
-const filterByMediaType = (results) => {
-  let newResults: any = [];
+const filterByMediaType = (results: IResponseDetail[]) => {
+  let newResults: IResponseDetail[] = [];
   // eslint-disable-next-line array-callback-return
-  results.map((content: any) => {
+  results.map((content: IResponseDetail) => {
     if (content.media_type === ('tv' || 'movie')) {
       newResults.push(content);
     }
@@ -62,7 +63,7 @@ class MoviesService {
     return response;
   }
 
-  async getSearches(query) {
+  async getSearches(query: string) {
     const searchByQuery = ENDPOINT_SEARCH + query;
     const { results } = await restClient(searchByQuery);
     return filterByMediaType(results);

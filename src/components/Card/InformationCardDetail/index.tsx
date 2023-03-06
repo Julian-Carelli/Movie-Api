@@ -1,16 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps*/
 import { useEffect } from 'react';
+import { IResponseDetail } from '../../../types';
 
-const drawProgressBar = (voteAverage) => {
-  let progressBar: any = document.querySelector('.circular-progress');
-  let valueContainer: any = document.querySelector('.value-container');
+const drawProgressBar = (voteAverage: number) => {
+  let progressBar: HTMLElement = document.querySelector('.circular-progress');
+  let valueContainer = document.querySelector('.value-container');
 
   const total = Math.round((voteAverage * 100) / 10);
   let progressValue = 0;
   let progressEndValue = total;
   let speed = 50;
 
-  let progress = setInterval(() => {
+  let progress: ReturnType<typeof setInterval> = setInterval(() => {
     if (!valueContainer || progressEndValue === 0) {
       progressBar.style.background = 'black';
       return clearInterval(progress);
@@ -28,7 +29,11 @@ const drawProgressBar = (voteAverage) => {
   }, speed);
 };
 
-const InformationCardDetail = ({ movie }) => {
+interface IProps {
+  movie: IResponseDetail;
+}
+
+const InformationCardDetail = ({ movie }: IProps) => {
   useEffect(() => {
     drawProgressBar(movie?.vote_average);
   }, []);
@@ -37,7 +42,7 @@ const InformationCardDetail = ({ movie }) => {
     <div className="Information-card-detail">
       <div>
         <p className="Information-card-detail__title">
-          {(movie?.media_type).toUpperCase()}
+          {movie.media_type!.toUpperCase()}
         </p>
         <div className="Information-card-detail__container">
           <div className="circular-progress">

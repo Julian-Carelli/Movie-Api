@@ -1,15 +1,16 @@
-const initialState = {
+import { IActionsReducer, IInitialState } from '../types';
+
+const initialState: IInitialState = {
   movies: [],
   series: [],
   favorites: [],
   genderMovies: [],
   genderSeries: [],
-  selectionContent: {
-    contentType: '',
-    content: null,
-  },
 };
-const movieReducer = (state, action) => {
+const movieReducer = (
+  state: IInitialState,
+  action: IActionsReducer
+): IInitialState => {
   const { type, payload } = action;
 
   switch (type) {
@@ -52,6 +53,8 @@ const movieReducer = (state, action) => {
         ...state,
         genderMovies: payload.genderMovies,
       };
+    default:
+      return state;
   }
 };
 

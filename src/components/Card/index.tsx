@@ -1,36 +1,36 @@
 /* eslint-disable array-callback-return*/
-import { useContext } from 'react';
-import { MovieContext } from '../../context/movieContextProvider';
 import { useNavigate } from 'react-router-dom';
 import { InformationCardHome } from './InformationCardHome';
 import { InformationCardDetail } from './InformationCardDetail';
+import { IResponseDetail } from '../../types';
 
 interface Iprops {
-  movie: any;
-  contentType?: any;
+  movie: IResponseDetail;
+  contentType: string;
   isFavoriteSection: boolean;
   showIconHeart: boolean;
   isDetail: boolean;
 }
 
-const Card = (props: Iprops) => {
-  const { movie, contentType, isFavoriteSection, showIconHeart, isDetail } =
-    props;
-  const value: any = useContext(MovieContext);
+const Card = ({
+  movie,
+  contentType,
+  isFavoriteSection,
+  showIconHeart,
+  isDetail,
+}: Iprops) => {
   const navigate = useNavigate();
   const contentTypeCustom = movie?.media_type ? movie?.media_type : contentType;
-
-  const genderList = {
-    genderSeries: value?.genderSeries,
-    genderMovies: value?.genderMovies,
-  };
 
   const haveMediaType = movie && 'media_type' in movie;
   if (!haveMediaType && movie) {
     movie['media_type'] = contentTypeCustom;
   }
 
-  const goToPageDetail = (movie, contentTypeCustom) => {
+  const goToPageDetail = (
+    movie: IResponseDetail,
+    contentTypeCustom: string
+  ) => {
     return navigate('/' + contentTypeCustom + '/' + movie.id);
   };
 
@@ -38,9 +38,7 @@ const Card = (props: Iprops) => {
     movie,
     contentTypeCustom,
     goToPageDetail,
-    genderList,
     contentType,
-    value,
     showIconHeart,
     isFavoriteSection,
     isDetail,

@@ -1,3 +1,14 @@
+import { IMediaType } from '../../types';
+
+interface IProps {
+  filterClass: string;
+  getFilter: (contentType: IMediaType) => void;
+  filter: IMediaType;
+  titleName: string;
+  currentFilterToFocus: string;
+  isFavoriteSection: boolean;
+}
+
 const Filter = ({
   filterClass,
   getFilter,
@@ -5,11 +16,11 @@ const Filter = ({
   titleName,
   currentFilterToFocus,
   isFavoriteSection,
-}) => {
+}: IProps) => {
   const showActiveFilter = (
-    isFavoriteSection,
-    filter,
-    currentFilterToFocus
+    isFavoriteSection: boolean,
+    filter: string,
+    currentFilterToFocus: string
   ) => {
     if (filter === currentFilterToFocus) {
       if (isFavoriteSection) {

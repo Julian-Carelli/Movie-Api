@@ -2,24 +2,36 @@ import { useContext, useEffect, useState } from 'react';
 import { MovieContext } from '../context/movieContextProvider';
 import { Search } from '../components/Search';
 import { Section } from '../components/Section';
+import {
+  IInitialState,
+  IMediaType,
+  IResponseDetail,
+  TFilterFocus,
+  TSelectionContent,
+} from '../types';
 
 const Home = () => {
-  const { movies, series, favorites }: any = useContext(MovieContext);
-  const [filterFavorite, setFilterFavorite] = useState<any>(null);
-  const [selectionContentMovies, setSelectionContentMovies] = useState<any>({
-    contentType: '',
-    content: null,
-  });
-  const [selectionContentSeries, setSelectionContentSeries] = useState<any>({
-    contentType: '',
-    content: null,
-  });
+  const { movies, series, favorites }: IInitialState = useContext(MovieContext);
+  const [filterFavorite, setFilterFavorite] = useState<
+    IResponseDetail[] | null
+  >(null);
+  const [selectionContentMovies, setSelectionContentMovies] =
+    useState<TSelectionContent>({
+      contentType: '',
+      content: null,
+    });
+  const [selectionContentSeries, setSelectionContentSeries] =
+    useState<TSelectionContent>({
+      contentType: '',
+      content: null,
+    });
   const [whichShow, setWhichShow] = useState('movie');
-  const [currentFilterToFocus, setCurrentFilterToFocus] = useState({
-    contentPopular: 'movie',
-    contentFavorite: 'all',
-  });
-  const getFilterFavorites = (filter) => {
+  const [currentFilterToFocus, setCurrentFilterToFocus] =
+    useState<TFilterFocus>({
+      contentPopular: 'movie',
+      contentFavorite: 'all',
+    });
+  const getFilterFavorites = (filter: IMediaType) => {
     setCurrentFilterToFocus({
       ...currentFilterToFocus,
       contentFavorite: filter,
@@ -27,13 +39,13 @@ const Home = () => {
     if (filter === 'all') {
       return setFilterFavorite(null);
     }
-    const favoritesCurrent = favorites.filter(
-      (favorite) => favorite.media_type === filter
+    const favoritesCurrent: IResponseDetail[] = favorites.filter(
+      (favorite: IResponseDetail) => favorite.media_type === filter
     );
     setFilterFavorite(favoritesCurrent);
   };
 
-  const getContent = (contentType) => {
+  const getContent = (contentType: IMediaType) => {
     setCurrentFilterToFocus({
       ...currentFilterToFocus,
       contentPopular: contentType,
@@ -85,6 +97,7 @@ const Home = () => {
         getFilter={getFilterFavorites}
         contents={filterFavorite || favorites}
         isFavoriteSection={true}
+        contentType={''}
         currentFilterToFocus={currentFilterToFocus.contentFavorite}
       />
       <Section

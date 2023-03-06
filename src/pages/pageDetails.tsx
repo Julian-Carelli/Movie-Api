@@ -4,7 +4,7 @@ import { MoviesService } from '../services/moviesService';
 
 const moviesService = new MoviesService();
 
-const decideByMovieOrSerie = async (contentType, contentId) => {
+const decideByMovieOrSerie = async (contentType: string, contentId: string) => {
   if (contentType === 'movie') {
     const content = await moviesService.getPageMovieDetails(contentId);
     return content;
@@ -15,9 +15,9 @@ const decideByMovieOrSerie = async (contentType, contentId) => {
 
 const PageDetails = () => {
   const [currentContent, setcurrentContent] = useState<any>(null);
-  const hashArray: any = window.location.hash.split('/');
-  const contentType: any = hashArray[1];
-  const contentId = hashArray[2];
+  const hashArray: string[] = window.location.hash.split('/');
+  const contentType: string = hashArray[1];
+  const contentId: string = hashArray[2];
 
   useEffect(() => {
     (async () => {
